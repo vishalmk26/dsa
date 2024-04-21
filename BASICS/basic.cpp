@@ -116,6 +116,39 @@ void print11(int n){
         cout<< endl;
     }
 }
+void print12(int n){
+    int i,j;
+    int space=2*(n-1);
+    for(i=1;i<=n;i++){
+        //numbers
+        for(j=1;j<=i;j++){
+            cout << j;
+        }
+        //space
+        for(j=1;j<=space;j++){
+            cout<< " ";
+        }
+        //numbers
+        for(j=i;j>=1;j--){
+            cout << j ;
+
+        }
+        cout << endl;
+        space-=2;
+    }
+}
+void print13(int n){
+    int i,j;
+    int num=1;
+    for(i=1;i<=n;i++){
+        for(j=1;j<=i;j++){
+            cout << num << " ";
+            num=num+1;
+        }
+        cout << endl;
+    }
+}
+
 int main(){
     // int x=10;
     // long y=15000;
@@ -131,7 +164,7 @@ int main(){
     cin >> t;
     for(int i=0;i<t;i++){
         cin >> n;
-        print11(n);
+        print10(n);
     }
     // int n;
     // cin >> n;
