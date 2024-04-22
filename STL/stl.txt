@@ -1,0 +1,134 @@
+pair<int,int> x => x contains a pair of integer values. To access them use x.first or x.second
+pair<int, pair<int,int>> y => nested pairs. To access them use y.second.first or y.second.second
+pair<int,int > arr[] => creates an array of pairs ===> [{1,2},{2,3},{3,4}]
+
+vector is a kind of container which is dynamic in nature.
+vector <int> v
+v.push_back(1) => it adds the parameter into the empty vector v ===> {1}
+v.emplace_back(2) => similar to pushback but faster ===> {1,2}
+vector<pair<int,int>> vec
+vec.push_back({1,2}) => need to use curly braces for pushback
+vec.emplace_back(1,2) => it assumes it to be a pair and inserts the the values. No need of curly braces.
+vector<int > v(5,100) => v contains 5 instances of 100. To access > v[1] or v[2] ===> {100,100,100,100,100}
+vector<int> v(5) => v contains 5 instances of garbage values or zeros
+vector <int>v1(v) => creates a copy of vector v
+
+vector<int>::iterator i =v.begin() => points to the address of element being stored. Elements are stored contiguously. Suppose {1,2,3,4,5,6,7} is the vector, then the above statement points to the address of first element
+ i++ => increments and moves to the next element in the vector.
+cout << *i => '*' is used to access the element stored in that memory address
+vector<int>::iterator i =v.end() => points to memory location after the last element of the vector and not the last element. To access the last element we can use i-- (which now points to the last element).
+v.back() => points to the last element 
+To access all the elements in the vector we can either loop through it using indices or using iterator :
+for( vector<int>::iterator i = v.begin; i!=v.end(); i++){
+cout << *(i) << " ";
+}
+for( auto i = v.begin; i!=v.end(); i++){
+cout << *(i) << " ";
+}
+auto automatically means that it is a vector iterator. 
+v.erase(v.begin()+1) => deletes. the second element of the vector 
+v.erase(v.begin()+1, v.begin()+5) => first parameter is the start point and second is the end. in the end part it excludes itself and erases the elements before the end point. ==> {1,2,3,4,5,6,7} here it erases begin()+1 i.e 2 till 6 but not 6.
+
+vector<int>v( 2,100 ) => {100,100}
+v.insert( v.begin(), 50 ) => {50,100,100}
+v.isnert( v.begin()+1, 2 ,75 ) => {50,75,75,100,100} ===> inserts two 75 at begin+1 position i.e 2 
+
+v.size() ===> gives the size of the vector
+
+v.pop_back() ===> pops out the last element
+
+v.swap(v1) ===> swaps v and v1 vectors
+
+v.clear() ===> erases the entire vector
+
+list<int>ls; ===> creates a list of integer values.
+ls.push_back(2); ===> pushes element 2 ===> {2}
+ls.emplace_back(4) ===> {2,4}
+ls.push_front(1) ===> {1,2,4}
+ls.emplace_front(3) ===> {3,1,2,4}
+
+deque<int>dq ===> creates a double ended queue where we can insert of delete elements form both the ends
+dq.pop_back()
+dq.pop_front()
+
+stack<int> st; ===> creates a stack LIFO => LAST IN FIRST OUT
+st.push(1) ===> {1}
+st.push(2) ===> {2,1}
+st.push(3) ===> {3,2,1}
+st.push(4) ===> {4,3,2,1}
+cout << st.top(); ===> prints 4
+
+queue<int>q ===> FIFO=> FIRST IN FRIST OUT
+q.push(1)===>{1}̄̄
+q.push(2)===>{1,2}̄̄
+q.push(3)===>{1,2,3}̄̄
+q.back()+=5; ===> adds 5 to 3
+q.front() refers to 1
+q.pop() pops out 1
+
+priority_queue<int> pq ==> always keeps the highest value in the queue at the top and hence in descending order ===> maximum heap
+pq.push(10) ==>{10}
+pq.push(5)==> {10,5}
+pq.push(15)==>{15,10,5}
+pq.top() refers to 15
+priority_queue<int, vector<int>, greatest<int>> pq1 ===> keeps the smallest value at top ===> minimum heap
+push and pop time complexity is log n
+top it is o(1) 
+
+set ==> the values in a set are always sorted and unique (no repeated values)
+set<int>st
+st.insert(1)==>{1}
+st.insert(2)==>{1,2}
+st.emplace(2)===>{1,2}
+auto it=st.find(2) ==> find function returns an iterator(pointer)
+st.count(1)==> counts the number of ones in the set
+{1,2,3,4,5}
+auto it1=st.find(2)
+auto it2=st.find(4)
+st.erase(it1, it2) ===> deletes elements 2 and 3 not 4
+
+multiset<int>ms ===> the values are just sorted and need not to be unique.
+ms.insert(1) ===> {1}̄
+ms.insert(1) ===> {1,1}̄
+ms.insert(1) ===> {1,1,1}̄
+ms.erase(1) ===> deletes all ones
+ms.erase(ms.find(1)) ===> deletes only one 1 that it encounters first
+ms.erase(ms.find(1), ms.find(1)+2) ==> "ms.find(1)+2" points to the 3rd element. So it deletes ones at the positions 1 and 2 not 3
+
+unordered_set ===> the values are unique but not sorted and all the operations are similar to set
+
+map<int, int>mp ===> stores elements as a key , value pair. It stores unique keys in sorted order
+mp[1]=2 ===> 1 is the key 2 is the value
+mp.emplace( {3,1} )
+mp.insert( {2,4} )
+|        {1,2}        |
+|        {2,4}        |
+|        {3,1}        |
+|                         |
++-----------+
+for( auto it : mp ){
+cout << it.first << " " << it.second << endl;
+}
+output:
+1,2
+2,4
+3,1
+auto it=mp.find(3) ===> this points to the key 3 and stores the address of that key
+cout << *( it.second ) ===> gives the value stored at the address above
+multimap ===> can store duplicate keys
+unordered map===> unique keys and not sorted
+
+ALGORITHMS:
+sort(start, end) ===> sorts all the values in ascending order from start till end but not end
+sort( a, a+n ) ===> if the size of the vector or array is n, it deletes all elements
+sort( a, a+n, greater<int> ) ===> sorts in descending order
+
+next_permutation ==> gives the next possible permutation of the given string
+string s="123" ===> always keep in sorted format and if not sorted, sort first
+do{
+cout << s << endl;
+}while( next_permutation( s.begin(), s.end() ) )
+
+max_element(a, a+n) ===> gives the address maximum element of the vector or the array
+*max_element(a, a+n) ===> gives the max element
+similarly is the min_element
