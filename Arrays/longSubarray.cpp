@@ -32,6 +32,7 @@ using namespace std;
 //         return maxLen;  
 // } 
 
+// optimal solution
 int longestSubarrayWithSumk(vector<int> a, long long k){
     int left=0, right=0;
     long long sum=a[0];
