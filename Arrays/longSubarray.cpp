@@ -32,6 +32,36 @@ using namespace std;
 //         return maxLen;  
 // } 
 
+int longestSubarrayWithSumk(vector<int> a, long long k){
+    int left=0, right=0;
+    long long sum=a[0];
+    int maxLen=0;
+    int n=a.size();
+    while (right<n)
+    {
+        /* code */
+        while (left<=right && sum>k)
+        {
+            /* code */
+            sum-=a[left];
+            left++;
+        }
+        if (sum==k)
+        {
+            /* code */
+            maxLen=max(maxLen,right-left+1);
+        }
+        right++;
+        if (right<n)
+        {
+            /* code */
+            sum=sum+a[right];
+        }
+        return maxLen;
+    }
+    
+}
+
 int main(){
     int n;
     cin >> n;
@@ -43,6 +73,6 @@ int main(){
     }
     long long k;
     cin >> k;
-    lenOfLongSubarr(arr,n,k);
+    longestSubarrayWithSumk(arr,k);
     return 0;
 }
