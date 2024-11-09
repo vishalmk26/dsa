@@ -6,20 +6,39 @@
 using namespace std;
 
 int majorityElement(vector<int>& nums) {
-    map<int,int> mpp;  
-    for (int i = 0; i < nums.size(); i++)
-    {
+     int cnt=0;
+     int el;
+     for (int i = 0; i < nums.size(); i++)
+     {
         /* code */
-        mpp[nums[i]]++;
-    }
-    for(auto it : mpp){
-        if (it.second > (nums.size())/2 )
+        if(cnt==0){
+            cnt=1;
+            el=nums[i];
+        }
+        else if (nums[i]==el)
         {
             /* code */
-            return it.first;
+            cnt++;
         }
-    }
-    return -1;      
+        else{
+            cnt--;
+        }
+     }
+     int cnt1=0;
+     for (int i = 0; i < nums.size(); i++)
+     {
+        /* code */
+        if (nums[i]==el)
+        {
+            /* code */
+            cnt1++;
+        }
+     }
+     if (cnt1> (nums.size()/2))
+     {
+        /* code */return el;
+     }
+     return -1;
 }
 
 int main(){
@@ -35,3 +54,17 @@ int main(){
 }
 
 // better soluion
+    // map<int,int> mpp;  
+    // for (int i = 0; i < nums.size(); i++)
+    // {
+    //     /* code */
+    //     mpp[nums[i]]++;
+    // }
+    // for(auto it : mpp){
+    //     if (it.second > (nums.size())/2 )
+    //     {
+    //         /* code */
+    //         return it.first;
+    //     }
+    // }
+    // return -1; 
