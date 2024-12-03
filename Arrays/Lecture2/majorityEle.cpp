@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// >n/2. similar problem in lecture 3.
 int majorityElement(vector<int>& nums) {
      int cnt=0;
      int el;
