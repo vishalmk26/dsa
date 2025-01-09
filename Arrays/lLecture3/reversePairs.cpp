@@ -40,6 +40,7 @@ void merge(vector<int> &arr, int low, int mid, int high) {
     }
 }
 
+// the difference is here
 int countPairs(vector<int> &arr, int low, int mid, int high) {
     int right = mid + 1;
     int cnt = 0;
