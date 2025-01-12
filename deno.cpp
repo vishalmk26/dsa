@@ -7,3 +7,5 @@ int main(){
     cin >> x;
     cout << "hey" << x;
 }
+
+// cms+shift+b --> for running a program
