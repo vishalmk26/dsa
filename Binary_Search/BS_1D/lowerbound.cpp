@@ -2,7 +2,7 @@
 #include<algorithm>
 #include <iostream>
 using namespace std;
-
+// Implement lower Bound
 int lowerBound(vector<int> arr, int n, int x) {
     int low = 0, high = n - 1;
     int ans = n;

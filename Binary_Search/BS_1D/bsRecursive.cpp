@@ -3,7 +3,7 @@
 #include<algorithm>
 #include<iostream>
 using namespace std;
-
+// Binary Search
 int binarySearch(vector<int>& nums, int low, int high, int target) {
 
     if (low > high) return -1; //Base case.

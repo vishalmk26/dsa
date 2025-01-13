@@ -3,7 +3,7 @@
 #include<vector>
 
 using namespace std;
-
+// Floor and Ceil in Sorted Array
 int floor(vector<int> arr, int x, int n){
     int low = 0, high = n-1;
     int ans = -1;

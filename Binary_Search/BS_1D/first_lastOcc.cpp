@@ -2,7 +2,7 @@
 #include<algorithm>
 #include<iostream>
 using namespace std;
-
+// first and Last occurrence in a sorted array
 int upperBound(vector<int> &arr, int x, int n){
 	// Write your code here.
 		int ans = n;

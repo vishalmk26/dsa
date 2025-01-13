@@ -2,7 +2,7 @@
 #include<algorithm>
 #include <iostream>
 using namespace std;
-
+// Search Insert Position
 int searchInsert(vector<int>& arr, int x) {
     int n = arr.size(); // size of the array
     int low = 0, high = n - 1;
