@@ -3,7 +3,7 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-// Search Element in Rotated Sorted Array II
+// Search Element in Rotated Sorted Array II (may contain duplicate values)
 bool searchInARotatedSortedArrayII(vector<int>&arr, int k) {
     int n = arr.size(); // size of the array.
     int low = 0, high = n - 1;
