@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Peak element in Arrays
 int findPeakElement(vector<int> &arr) {
     int n = arr.size(); //Size of array.
 
