@@ -6,6 +6,8 @@
 #include<algorithm>
 using namespace std;
 
+
+// Finding Sqrt of a number using Binary Search
 int floorSqrt(int n) {
     int low = 1, high = n;
     //Binary search on the answers:
