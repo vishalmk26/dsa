@@ -3,6 +3,7 @@
 #include<algorithm>
 using namespace std;
 
+// Aggressive Cows : Detailed Solution
 bool canWePlace(vector<int> &stalls, int dist, int cows) {
     int n = stalls.size(); //size of array
     int cntCows = 1; //no. of cows placed
