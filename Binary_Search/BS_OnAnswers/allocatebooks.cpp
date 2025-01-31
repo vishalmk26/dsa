@@ -4,6 +4,8 @@
 using namespace std;
 
 // Allocate Minimum Number of Pages
+// Split Array - Largest Sum
+// Painter's Partition Problem
 int countStudents(vector<int> &arr, int pages) {
     int n = arr.size(); //size of array.
     int students = 1;
