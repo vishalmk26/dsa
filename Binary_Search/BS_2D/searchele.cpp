@@ -3,6 +3,7 @@
 #include<algorithm>
 using namespace std;
 
+// Search in a sorted 2D matrix
 bool searchMatrix(vector<vector<int>>& matrix, int target) {
     int n = matrix.size();
     int m = matrix[0].size();
