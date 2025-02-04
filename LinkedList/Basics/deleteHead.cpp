@@ -58,11 +58,57 @@ Node* deleteTail(Node* head){
     temp->next = nullptr;
     return head;
 }
+Node* deletek(Node* head,int k){
+    if(head == NULL) return head;
+    if(k == 1){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+    int cnt = 0;
+    Node* temp = head; 
+    Node* prev = NULL;
+    while(temp != NULL){
+        cnt++;
+        if(cnt == k){
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+    return head;
+}
+
+Node* deleteVal(Node* head,int val){
+    if(head == NULL) return head;
+    if(head->data == val){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+    Node* temp = head; 
+    Node* prev = NULL;
+    while(temp != NULL){
+        if(temp->data == val){
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+    return head;
+}
 
 int main(){
     vector<int> arr = {2, 5, 8, 7};
     Node* head = convertArr2Ll(arr);
-    head = deleteTail(head);
+    // head = deletek(head, 7);
+    head = deleteVal(head, 7);
     printLL(head);
     return 0;
 }
