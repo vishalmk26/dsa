@@ -67,7 +67,7 @@ Node* deleteTail(Node* head){
     return head;
 }
 
-Node* deleteNode(Node* head, int x) {
+Node* deletexNode(Node* head, int x) {
     // Your code here
     if(head == NULL) return head;
     Node* temp = head;
@@ -96,6 +96,23 @@ Node* deleteNode(Node* head, int x) {
         free(temp);
     }
     return head;
+}
+
+void deleteNode(Node* node) {
+    //Write your code here.
+    Node* back = node->prev;
+    Node* front = node->next;
+    if(front == NULL){
+        back->next = nullptr;
+        node->prev = nullptr;
+        free(node);
+        return;
+    }
+    back->next = front;
+    front->prev = back;
+    node->next = nullptr;
+    node->prev = nullptr;
+    free(node);
 }
 
 int main(){
