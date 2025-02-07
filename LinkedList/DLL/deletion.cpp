@@ -44,8 +44,63 @@ void printdll(Node* head){
     }
 }
 
+Node * deleteHead(Node *head) {
+    // Write your code here.
+    if(head == NULL || head->next == NULL) return NULL;
+    Node* prev = head;
+    head = head->next;
+    head->prev = nullptr;
+    prev->next = nullptr;
+    free(prev);
+    return head;
+}
+
+Node* deleteTail(Node* head){
+    Node* tail = head;
+    while(tail->next != NULL){
+        tail = tail->next;
+    }
+    Node* prev = tail->prev;
+    prev->next = nullptr;
+    tail->prev = nullptr;
+    free(tail);
+    return head;
+}
+
+Node* deleteNode(Node* head, int x) {
+    // Your code here
+    if(head == NULL) return head;
+    Node* temp = head;
+    int cnt = 0;
+    while(temp != NULL){
+        cnt++;
+        if(cnt == x) break;
+        temp = temp->next;
+    }
+    Node* back = temp->prev;
+    Node* front = temp->next;
+    if(back == NULL && front == NULL){
+        free(temp);
+    }
+    else if(front == NULL){
+        return deleteTail(head);
+    }
+    else if(back == NULL){
+        return deleteHead(head);
+    }
+    else{
+        back->next = front;
+        front->prev = back;
+        temp->next = nullptr;
+        temp->prev = nullptr;
+        free(temp);
+    }
+    return head;
+}
+
 int main(){
     vector<int> arr = {1, 4, 7, 9};
     Node* head = constructDLL(arr);
+    head = deleteNode(head, 3);
     printdll(head);
 }
