@@ -44,6 +44,7 @@ void printLL(Node* head){
     }
 }
 
+// Find middle element in a Linked List
 Node *findMiddle(Node *head) {
     // Write your code here
     if(head == NULL) return head;

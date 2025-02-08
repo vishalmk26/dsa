@@ -44,27 +44,27 @@ void printLL(Node* head){
     }
 }
 
-// Reverse a Linked List
-Node* reverseLinkedList(Node *head)
+// Detect a cycle in a linked list
+bool detectCycle(Node *head)
 {
-    // Write your code here
-            Node* temp = head;
-        Node* prev = NULL;
-        while(temp!=NULL){
-            Node* front = temp->next;
-            temp->next = prev;
-            prev = temp;
-            temp = front;
+	//	Write your code here
+            Node* slow = head;
+        Node* fast = head;
+        while(fast!= NULL && fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast) return true;
         }
-        return prev;
+        return false;
 }
 
 int main(){
     vector<int> arr = {2, 5, 8, 7};
     Node* head = convertArr2Ll(arr);
-    head = reverseLinkedList(head);
-    printLL(head);
+    // head = findMiddle(head);
+    // printLL(head);
     // int n = getCount(head);
     // cout << n;
+    cout <<  detectCycle(head);
     return 0;
 }
