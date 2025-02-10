@@ -44,28 +44,35 @@ void printLL(Node* head){
     }
 }
 
-// seggregate odd and even nodes in LL
-Node* oddEvenList(Node* head)
+// Remove N-th node from the end of a Linked List
+Node* removeKthNode(Node* head, int n)
 {
-	// Write your code here.
-            if (head == NULL || head->next == NULL) return head;
-        Node* odd = head;
-        Node* even = head->next;
-        Node* evenHead = even;
-        while(even != NULL && even->next!= NULL){
-            odd->next = odd->next->next;
-            even->next = even->next->next;
-            odd = odd->next;
-            even = even->next;
+    // Write your code here.
+    Node* fast = head;
+        for(int i = 0; i<n; i++){
+            fast = fast->next;
         }
-        odd->next = evenHead;
+        if(fast == NULL){
+            return head->next;
+        }
+        Node* slow = head;
+        while(fast->next != NULL){
+            slow= slow->next;
+            fast = fast->next;
+        }
+        if(fast == NULL){
+            return head->next;
+        }
+        Node* temp = slow->next;
+        slow->next = slow->next->next;
+        delete temp;
         return head;
 }
 
 int main(){
     vector<int> arr = {2, 5, 8, 7};
     Node* head = convertArr2Ll(arr);
-    head = oddEvenList(head);
+    head = removeKthNode(head,2);
     printLL(head);
     // int n = getCount(head);
     // cout << n;
