@@ -44,27 +44,34 @@ void printLL(Node* head){
     }
 }
 
-// Find intersection of Two Linked Lists
-Node* findIntersection(Node *firstHead, Node *secondHead)
+// Add two numbers represented as Linked Lists
+Node *addTwoNumbers(Node *num1, Node *num2)
 {
-    //Write your code here
-            Node* temp1 = firstHead;
-        Node* temp2 = secondHead;
-        while(temp1!=temp2){
-            temp1 = temp1->next;
-            temp2 = temp2->next;
-            if(temp1 == temp2) return temp1;
+    // Write your code here.
+            Node* dummy = new Node(-1);
+        Node* cur = dummy;
+        Node* t1 = num1;
+        Node* t2 = num2;
+        int carry =0;
+        while(t1!=NULL || t2!=NULL){
+            int sum = carry;
+            if(t1) sum = sum+t1->data;
+            if(t2) sum = sum+t2->data;
+            Node* newN = new Node(sum%10);
+            carry = sum/10;
 
-            if(temp1 == NULL){
-                temp1 = secondHead;
-            }
-            if(temp2==NULL){
-                temp2 = firstHead;
-            }
-
+            cur->next = newN;
+            cur = cur->next;
+            if(t1) t1 = t1->next;
+            if(t2) t2 = t2->next;
         }
-        return temp1;
-}}
+        if(carry){
+            Node* n = new Node(carry);
+            cur->next = n;
+            cur = cur->next;
+        }
+        return dummy->next;
+}
 
 int main(){
     vector<int> arr = {2, 5, 8, 7};
