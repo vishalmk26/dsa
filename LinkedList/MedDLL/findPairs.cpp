@@ -44,31 +44,34 @@ void printdll(Node* head){
     }
 }
 
-// Delete all occurrences of a key in DLL
-Node * deleteAllOccurrences(Node* head, int k) {
-    // Write your code here
-    if(head == NULL) return head;
+Node* findTail(Node* head){
     Node* temp = head;
-    while(temp!=NULL){
-        if(temp->data == k){
-            if(temp == head){
-                head = head->next;
-            }
-            Node* nextNode = temp->next;
-            Node* prevNode = temp->prev;
-            if(nextNode) nextNode->prev = prevNode;
-            if(prevNode) prevNode->next = nextNode;
-            free(temp);
-            temp = nextNode;
-
-        }
-        else{
-            temp = temp->next;
-        }
+    while(temp->next!=NULL){
+        temp = temp->next;
     }
-    return head;
+    return temp;
 }
 
+// 	Find pairs with given sum in DLL
+vector<pair<int, int>> findPairs(Node* head, int k)
+{
+    // Write your code here.
+    vector<pair<int, int>> ans;
+    Node* left = head;
+    Node* right = findTail(head);
+    while(left->data < right->data){
+        if((left->data + right->data) == k){
+            ans.push_back({left->data, right->data});
+            left = left->next;
+            right = right->prev;
+        }
+        else if((left->data + right->data)<k){
+            left = left->next;
+        }
+        else right= right->prev;
+    }
+    return ans;
+}
 
 int main(){
     vector<int> arr = {1, 4, 7, 4, 9};
