@@ -44,47 +44,31 @@ void printLL(Node* head){
     }
 }
 
-// Reverse LL in group of given size K
-Node* reverse(Node* head){
-    Node* temp = head;
-    Node* prev = NULL;
-    while(temp != NULL){
-        Node* front = temp->next;
-        temp->next = prev;
-        prev = temp;
-        temp = front;
-    }
-    return temp;
-}
-Node* kThNode(Node* temp, int k){
-    k--;
-    while(temp!=NULL && k>0){
+// Rotate a Linked List
+Node* findkthNode(Node* head, int k){
+    k-=1;
+    while(head!=NULL && k>0){
         k--;
-        temp = temp->next;
-    }
-    return temp;
-}
-Node* kReverse(Node* head, int k) {
-    // Write your code here.
-    Node* temp = head;
-    Node* prev = NULL;
-    while(temp!=NULL){
-        Node* kTh = kThNode(temp,k);
-        if(kTh == NULL){
-            if(prev) prev->next = temp;
-            break;
-        }
-        Node* front = kTh->next;
-        kTh->next = nullptr;
-        reverse(temp);
-        if(temp == head) head = kTh;
-        else{
-            prev->next = kTh;
-        }
-        prev = temp;
-        temp = front;
+        head = head->next;
     }
     return head;
+}
+Node *rotate(Node *head, int k) {
+     // Write your code here.        
+     if(head == NULL || head->next == NULL) return head;
+        int len = 1;
+        Node* tail = head;
+        while(tail->next != NULL){
+            len++;
+            tail = tail->next;
+        }
+        if(k%len == 0) return head;
+        k = k%len;
+        Node* newLast = findkthNode(head, len-k);
+        tail->next = head;
+        head = newLast->next;
+        newLast->next = nullptr;
+        return head;
 }
 
 int main(){
