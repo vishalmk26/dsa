@@ -1,9 +1,8 @@
-#include<algorithm>
-#include<vector>
 #include<iostream>
+#include<vector>
+#include<algorithm>
 
 using namespace std;
-
 //Function to return precedence of operators
 int prec(char c) {
   if (c == '^')
@@ -16,14 +15,21 @@ int prec(char c) {
     return -1;
 }
 
-// The main function to convert infix expression
-//to postfix expression
-void infixToPostfix(string s) {
-
-  stack < char > st; //For stack operations, we are using C++ built in stack
-  string result;
-
-  for (int i = 0; i < s.length(); i++) {
+string infixToPrefix(string s){
+    stack<char> st;
+    string result="";
+    reverse(s.begin(),s.end());
+    for(int i=0;i<s.length();i++){
+        if(s[i]=='('){
+            s[i]=')';
+            i++;
+        }
+        else if(s[i]==')'){
+            s[i]='(';
+            i++;
+        }
+    }
+    for (int i = 0; i < s.length(); i++) {
     char c = s[i];
 
     // If the scanned character is
@@ -49,10 +55,18 @@ void infixToPostfix(string s) {
 
     //If an operator is scanned
     else {
+        if(s[i]=='^'){
       while (!st.empty() && prec(s[i]) <= prec(st.top())) {
         result += st.top();
         st.pop();
       }
+    }
+    else{
+        while(!st.empty() and prec(s[i])<prec(st.top())){
+            result+= st.top();
+            st.pop();
+        }
+    }
       st.push(c);
     }
   }
@@ -62,13 +76,12 @@ void infixToPostfix(string s) {
     result += st.top();
     st.pop();
   }
-
-  cout << "Postfix expression: " << result << endl;
+    reverse(result.begin(),result.end());
+    return result;
 }
-
 int main() {
-  string exp = "(p+q)*(m-n)";
+  string exp = "(p+q)*(c-d)";
   cout << "Infix expression: " << exp << endl;
-  infixToPostfix(exp);
+  cout << "Prefix expression: " << infixToPrefix(exp) << endl;
   return 0;
 }
