@@ -4,6 +4,10 @@
 
 using namespace std;
 
+// Collision of asteroids : push back all the positive asteroids 
+// and in case of negative asteroid, destroy the smaller sized asteroid
+// by checking the top of the list.
+
     vector<int> asteroidCollision(vector<int>& asteroids) {
         vector<int> ls;
         for(int i = 0; i<asteroids.size(); i++){
