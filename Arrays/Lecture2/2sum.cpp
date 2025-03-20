@@ -7,7 +7,7 @@
 using namespace std;
 
 vector<int> twoSum(vector<int> a, int target){
-    map<int,int> mpp;
+    map<int,int> mpp;//stores the value and the index pair
     for (int i = 0; i < a.size(); i++)
     {
         /* code */
